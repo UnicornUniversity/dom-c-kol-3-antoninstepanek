@@ -90,8 +90,10 @@ function getRandomSurname(gender) {
  */
 function getRandomBirthdate(minAge, maxAge) {
   const today = new Date();
-  const minTime = new Date(today.getFullYear() - maxAge - 1, today.getMonth(), today.getDate() + 1).getTime();
-  const maxTime = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate()).getTime();
+  const oldest = new Date(today.getFullYear() - maxAge, today.getMonth(), today.getDate());
+  const youngest = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+  const minTime = oldest.getTime();
+  const maxTime = youngest.getTime();
   const randomTime = Math.floor(Math.random() * (maxTime - minTime + 1)) + minTime;
   return new Date(randomTime).toISOString();
 }
@@ -129,4 +131,6 @@ export function main(dtoIn) {
   const dtoOut = employees;
   return dtoOut;
 }
+
+
 console.table(main({ count: 5, age: { min: 18, max: 65 } }));
