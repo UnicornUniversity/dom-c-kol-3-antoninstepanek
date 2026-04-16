@@ -131,6 +131,3 @@ export function main(dtoIn) {
   const dtoOut = employees;
   return dtoOut;
 }
-
-
-console.table(main({ count: 5, age: { min: 18, max: 65 } }));
